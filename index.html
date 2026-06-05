@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pixel Flag Creator</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" type="image/png" href="pixel-flag-creator logo.png">
+</head>
+<body>
+  <div class="page-shell">
+    <div class="background-shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+    </div>
+
+    <header class="navbar">
+      <div class="brand">
+        <img src="pixel-flag-creator logo.png" alt="logo" width="80px">
+        <div>
+          <p class="brand-name">Pixel Flag Creator</p>
+          <p class="brand-tag">Create flags pixel by pixel</p>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#editor">Editor</a>
+        <a href="#about">About</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-copy">
+          <p class="eyebrow">Pixel Art Studio</p>
+          <h1>Create Flags Pixel By Pixel.</h1>
+          <p class="hero-text">Design flags, icons, and pixel art directly in your browser.</p>
+          <button class="btn btn-primary" id="startButton">Start Creating</button>
+        </div>
+        <div class="hero-preview">
+          <div class="preview-card">
+            <div class="preview-card__title">Instant Pixel Preview</div>
+            <canvas id="heroPreviewCanvas" width="160" height="160"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <section class="features" id="features">
+        <div class="section-heading">
+          <p class="section-label">Features</p>
+          <h2>Powerful tools for fast flag creation</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-icon">✏️</div>
+            <h3>Pixel Precision Drawing</h3>
+            <p>Paint each square with exact control and refine every detail of your flags.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <h3>Custom Color Palette</h3>
+            <p>Choose vibrant colors, create your own shades, and keep your palette ready.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">💾</div>
+            <h3>Download Your Creations</h3>
+            <p>Export crisp PNG artwork with true pixel quality for sharing and printing.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="editor-section" id="editor">
+        <div class="section-heading">
+          <p class="section-label">Editor</p>
+          <h2>Build your flag in a colorful pixel workspace</h2>
+        </div>
+
+        <div class="editor-shell">
+          <aside class="editor-panel tools-panel">
+            <div class="panel-card">
+              <h3>Tools</h3>
+              <div class="tool-list" role="group" aria-label="Drawing tools">
+                <button class="tool-btn active" data-tool="pencil" title="Pencil Tool">✏️ Pencil</button>
+                <button class="tool-btn" data-tool="eraser" title="Eraser Tool">🧽 Eraser</button>
+                <button class="tool-btn" data-tool="fill" title="Fill Tool">🪣 Fill</button>
+              </div>
+            </div>
+
+            <div class="panel-card">
+              <h3>Color Palette</h3>
+              <div class="palette-grid" id="paletteButtons">
+                <button class="color-swatch active" data-color="#FFFFFF" style="background:#FFFFFF" title="White">⬜</button>
+                <button class="color-swatch" data-color="#333333" style="background:#333333" title="Black">⬛</button>
+                <button class="color-swatch" data-color="#E53935" style="background:#E53935" title="Red">🟥</button>
+                <button class="color-swatch" data-color="#FF9800" style="background:#FF9800" title="Orange">🟧</button>
+                <button class="color-swatch" data-color="#FDD835" style="background:#FDD835" title="Yellow">🟨</button>
+                <button class="color-swatch" data-color="#4CAF50" style="background:#4CAF50" title="Green">🟩</button>
+                <button class="color-swatch" data-color="#4169E1" style="background:#4169E1" title="Blue">🟦</button>
+                <button class="color-swatch" data-color="#9C27B0" style="background:#9C27B0" title="Purple">🟪</button>
+              </div>
+              <div class="custom-color">
+                <label for="customColor">Custom</label>
+                <input type="color" id="customColor" value="#4169E1" />
+              </div>
+            </div>
+
+            <div class="panel-card">
+              <h3>Flag Templates</h3>
+              <div class="template-grid">
+                <button class="template-btn" data-template="india">🇮🇳 India</button>
+                <button class="template-btn" data-template="france">🇫🇷 France</button>
+                <button class="template-btn" data-template="japan">🇯🇵 Japan</button>
+                <button class="template-btn" data-template="brazil">🇧🇷 Brazil</button>
+              </div>
+            </div>
+          </aside>
+
+          <section class="canvas-panel">
+            <div class="canvas-controls">
+              <div class="size-select">
+                <label>Grid Size</label>
+                <select id="gridSizeSelect">
+                  <option value="16">16 × 16</option>
+                  <option value="32">32 × 32</option>
+                  <option value="48">48 × 48</option>
+                </select>
+              </div>
+              <div class="grid-toggle">
+                <label for="gridLines">Show Grid</label>
+                <input type="checkbox" id="gridLines" checked />
+              </div>
+            </div>
+
+            <div class="pixel-grid-shell">
+              <div id="pixelGrid" class="pixel-grid"></div>
+            </div>
+
+            <div class="action-bar">
+              <button class="btn btn-secondary" id="clearCanvasBtn">🗑 Clear Canvas</button>
+              <button class="btn btn-secondary" id="undoBtn">↩ Undo</button>
+              <button class="btn btn-secondary" id="redoBtn">↪ Redo</button>
+              <button class="btn btn-primary" id="downloadBtn">💾 Download PNG</button>
+            </div>
+          </section>
+
+          <aside class="editor-panel preview-panel">
+            <div class="panel-card mini-preview-card">
+              <h3>Live Preview</h3>
+              <div class="mini-preview-shell">
+                <canvas id="miniPreview" width="160" height="160"></canvas>
+              </div>
+            </div>
+
+            <div class="panel-card stats-panel">
+              <h3>Preview Panel</h3>
+              <div class="stat-row"><span>Grid Size</span><span id="statGridSize">16 × 16</span></div>
+              <div class="stat-row"><span>Tool</span><span id="statTool">Pencil</span></div>
+              <div class="stat-row"><span>Color</span><span id="statColor"><span class="color-chip"></span> <span id="statColorText">#FFFFFF</span></span></div>
+              <div class="stat-row"><span>Colored Pixels</span><span id="statColored">0</span></div>
+            </div>
+
+            <div class="panel-card stats-panel">
+              <h3>Statistics</h3>
+              <div class="stat-row"><span>Grid Size</span><span id="statGridSize2">16 × 16</span></div>
+              <div class="stat-row"><span>Colored Pixels</span><span id="statColored2">0</span></div>
+              <div class="stat-row"><span>Unique Colors</span><span id="statUniqueColors">1</span></div>
+              <div class="stat-row"><span>Completion</span><span id="statCompletion">0%</span></div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="recognition-section" id="recognition">
+        <div class="section-heading">
+          <p class="section-label">🏳️ Flag Recognition</p>
+          <h2>See if your artwork matches a known flag</h2>
+        </div>
+        <div class="recognition-shell">
+          <div class="recognition-card" id="recognitionCard">
+            <div class="recognition-status" id="recognitionStatus">
+              <span>🤔 Unknown Flag</span>
+            </div>
+            <div class="recognition-detail" id="recognitionDetail">
+              <p>Keep creating! Your artwork doesn't currently match a known template.</p>
+            </div>
+            <div class="recognition-score" id="recognitionScore">
+              Match Score: <strong>0%</strong>
+            </div>
+            <ul class="match-list" id="recognitionMatches">
+              <li class="match-item">1. Germany 🇩🇪 — 0%</li>
+              <li class="match-item">2. France 🇫🇷 — 0%</li>
+              <li class="match-item">3. Italy 🇮🇹 — 0%</li>
+            </ul>
+          </div>
+          <div class="confetti-layer" id="confettiContainer"></div>
+        </div>
+      </section>
+
+      <section class="about" id="about">
+        <div class="section-heading">
+          <p class="section-label">About</p>
+          <h2>Made for flags, icons, and pixel creativity</h2>
+        </div>
+        <div class="about-card">
+          <p>Pixel Flag Creator is a browser-based pixel art editor designed for creating flags, icons, and simple pixel artwork through an intuitive grid-based drawing system. Paint, fill, and customize your own mini masterpieces with smooth controls and instant export.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Built for creators, artists, and pixel enthusiasts.</p>
+      <p>© <span id="currentYear"></span> Pixel Flag Creator</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
